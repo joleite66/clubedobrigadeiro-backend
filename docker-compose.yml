@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: clubedobrigadeiro
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:80"
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: mysql://root:root@database:3306/clubedobrigadeiro  # Updated reference
+
+  database:  # Changed from db to database
+    image: mysql:8.0
+    container_name: clubedobrigadeiro-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clubedobrigadeiro
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

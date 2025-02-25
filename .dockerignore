@@ -1,0 +1,9 @@
+vendor/
+var/
+node_modules/
+.env
+.env.local
+.env.dev
+.env.prod
+docker-compose.override.yml
+
