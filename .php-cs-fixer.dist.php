@@ -1,15 +1,22 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(['src'])
-    ->exclude(['var', 'vendor', 'public']);
+    ->in(['src']) // Directories to scan
+    ->exclude(['var', 'vendor']) // Ignore certain directories
+    ->name('*.php')
+    ->notName('*.blade.php') // Ignore Laravel Blade files (if using)
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
 
 return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR12' => true,
+        '@Symfony' => true, // Apply Symfony coding standards
         'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'binary_operator_spaces' => ['default' => 'align_single_space_minimal'],
         'no_unused_imports' => true,
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
+        'single_quote' => true,
+        'trailing_comma_in_multiline' => true,
     ])
     ->setFinder($finder);

@@ -49,8 +49,8 @@ stan:
 	$(PHPSTAN) analyse src --level=max
 
 # PHP-CS-Fixer - Code Formatting
-fix:
-	$(CSFIXER) fix --config=.php-cs-fixer.dist.php
+cs-fix:
+	vendor/bin/php-cs-fixer fix
 
 # Clear cache & logs
 clean:
